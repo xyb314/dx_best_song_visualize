@@ -1,5 +1,6 @@
 import os
 import math
+import imagehash
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 
@@ -326,7 +327,8 @@ class DrawBest(object):
         # self.img.show()
 
     def getDir(self):
-        pngName = '{:012X}'.format(hash(self))
+        # pngName = '{:012X}'.format(hash(self))
+        pngName = imagehash.phash(self.img, 8, 1)
         pngDir = f'mai\\wmbest\\{pngName}.png'
         self.img.save(pngDir)
         return pngDir
